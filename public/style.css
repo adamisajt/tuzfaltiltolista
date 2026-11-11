@@ -1,5 +1,42 @@
 body {
-    background-color: rgb(232, 219, 202);
-    color:rgb(58, 46, 135);
+  font-family: Arial, sans-serif;
+  margin: 30px;
 }
 
+table {
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px 15px;
+  text-align: left;
+}
+
+.disabled {
+  color: gray;
+  font-style: italic;
+}
+
+form {
+  width: 300px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+}
+
+input[type="number"],
+input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 8px 15px;
+}

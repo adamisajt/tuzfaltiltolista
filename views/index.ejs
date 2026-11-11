@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tűzfal tiltólista</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    Hello EJS!
+  <h1>Tűzfal tiltólista</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Prioritás</th>
+        <th>MAC-cím</th>
+        <th>Bekapcsolva</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% rules.forEach(function(rule) { %>
+        <tr class="<%= rule.enabled ? '' : 'disabled' %>">
+          <td><%= rule.id %></td>
+          <td><%= rule.priority %></td>
+          <td><%= rule.mac %></td>
+          <td><%= rule.enabled ? 'Igen' : 'Nem' %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <h2>Új szabály</h2>
+
+  <form action="/rules" method="post">
+    <label for="priority">Prioritás:</label>
+    <input
+      type="number"
+      id="priority"
+      name="priority"
+      step="1"
+      min="-2147483648"
+      max="2147483647"
+      required
+    >
+
+    <label for="mac">MAC-cím:</label>
+    <input
+      type="text"
+      id="mac"
+      name="mac"
+      placeholder="AA:BB:CC:11:22:33"
+      pattern="([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}"
+      required
+    >
+
+    <label>
+      <input type="checkbox" name="enabled">
+      Bekapcsolva
+    </label>
+
+    <button type="submit">Hozzáadás</button>
+  </form>
 </body>
 </html>
